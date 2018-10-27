@@ -1,0 +1,14 @@
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\UnitTests.deps.json
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\UnitTests.runtimeconfig.json
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\UnitTests.runtimeconfig.dev.json
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\UnitTests.dll
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\UnitTests.pdb
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\DogsForUs.dll
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\bin\Debug\netcoreapp1.1\DogsForUs.pdb
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\obj\Debug\netcoreapp1.1\UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\obj\Debug\netcoreapp1.1\UnitTests.AssemblyInfo.cs
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\obj\Debug\netcoreapp1.1\UnitTests.dll
+C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\UnitTests\obj\Debug\netcoreapp1.1\UnitTests.pdb
