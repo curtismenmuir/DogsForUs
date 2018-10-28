@@ -27,15 +27,5 @@ namespace DogsForUs.Models
         {
             return this.Name.Equals(dog.Name);
         }
-
-        /// <summary>
-        /// Override for GetHashCode() 
-        /// This generates a hash based on the same fields as the Equals method - if 2 objects are equal they should generate the same hash
-        /// </summary>
-        /// <returns>hash as int</returns>
-        public override int GetHashCode()
-        {
-            return this.Name.GetHashCode();
-        }
     }
 }

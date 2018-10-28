@@ -46,7 +46,32 @@ namespace DogsForUs.Controllers
                 }
             }
         }
-        
+
+        // PUT api/dogs/Original Dog Name
+        [HttpPut("{originalName}")]
+        public ActionResult UpdateDog(string originalName, Dog newDog)
+        {
+            lock (_dogCollection)
+            {
+                if (_dogCollection.ContainsKey(originalName))
+                {
+                    if (originalName.Equals(newDog.Name))
+                    {
+                        _dogCollection[newDog.Name] = newDog;
+                        return Ok();
+                    }
+                    else if (!_dogCollection.ContainsKey(newDog.Name))
+                    {
+                        _dogCollection.Remove(originalName);
+                        _dogCollection[newDog.Name] = newDog;
+                        return Ok();
+                    }
+                }
+                // Return bad request as cant update a record which doesn't exist
+                return BadRequest();
+            }
+        }
+
         public void Clear()
         {
             if (_dogCollection != null && _dogCollection.Count != 0)
@@ -71,18 +96,7 @@ namespace DogsForUs.Controllers
             }
         }
         /*
-       // POST api/dogs
-       [HttpPost]
-       public void Post([FromBody]string value)
-       {
-       }
-
-       // PUT api/dogs/5
-       [HttpPut("{id}")]
-       public void Put(int id, [FromBody]string value)
-       {
-       }
-
+       
        // DELETE api/dogs/5
        [HttpDelete("{id}")]
        public void Delete(int id)
