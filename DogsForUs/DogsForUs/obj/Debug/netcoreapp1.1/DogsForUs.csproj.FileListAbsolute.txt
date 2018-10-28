@@ -6,4 +6,3 @@ C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\DogsForUs\bin\Debug\netcorea
 C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\DogsForUs\obj\Debug\netcoreapp1.1\DogsForUs.AssemblyInfo.cs
 C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\DogsForUs\obj\Debug\netcoreapp1.1\DogsForUs.dll
 C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\DogsForUs\obj\Debug\netcoreapp1.1\DogsForUs.pdb
-C:\Users\curti\Documents\GitHub\DogsForUs\DogsForUs\DogsForUs\obj\Debug\netcoreapp1.1\DogsForUs.csprojResolveAssemblyReference.cache

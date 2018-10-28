@@ -14,18 +14,18 @@
 <body>
     <div id="mainPanel" class="container">
         <h1>Dogs 4 Us</h1>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewDogModal">
-            <i id="addNewDogBtn" class="fas fa-plus fa-4x" style="color: white;"></i>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDogModal">
+            <i id="addDogBtn" class="fas fa-plus fa-4x" style="color: white;"></i>
         </button>
         <div id="accordion"></div>
     </div>
     
-    <!-- addNewDogModal -->
-    <div class="modal fade" id="addNewDogModal" tabindex="-1" role="dialog" aria-labelledby="addNewDogModalLabel" aria-hidden="true">
+    <!-- addDogModal -->
+    <div class="modal fade" id="addDogModal" tabindex="-1" role="dialog" aria-labelledby="addDogModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addNewDogModalLabel">Add New Dog</h5>
+                    <h5 class="modal-title" id="addDogModalLabel">Add New Dog</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -42,7 +42,36 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addDog();">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="addDog();">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- editDogModal -->
+    <div class="modal fade" id="editDogModal" tabindex="-1" role="dialog" aria-labelledby="editDogModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editDogModalLabel">Edit Dog</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 id="editDogOriginalName"></h3>
+                    <div class="form-group">
+                        <label for="editDogBreedInput">Breed of Dog</label>
+                        <input type="text" class="form-control" id="editDogBreedInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDogDescriptionInput">Description</label>
+                        <input type="text" class="form-control" id="editDogDescriptionInput">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="editDog();">Save changes</button>
                 </div>
             </div>
         </div>
@@ -59,9 +88,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete this dog?</p>
-                    <p>These modifications cannot be undone.</p>
-                    <p hidden id="originalName" />
+                    <h3 id="deleteDogOriginalName"></h3>
+                    <p>Please confirm that you want to delete this dog. These modifications cannot be undone.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

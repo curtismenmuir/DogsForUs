@@ -17,7 +17,7 @@ function addDog() {
             contentType: 'application/x-www-form-urlencoded',
             data: newDog,
             success: function (result) {
-                $('#addNewDogModal').modal('hide');
+                $('#addDogModal').modal('hide');
                 alert("Dog added successfully!");
                 clearData();
             },
@@ -35,6 +35,10 @@ function clearData() {
     $('#accordion').empty();
     document.getElementById('dogBreedInput').value = '';
     document.getElementById('dogDescriptionInput').value = '';
+    document.getElementById('editDogBreedInput').value = '';
+    document.getElementById('editDogDescriptionInput').value = '';
+    document.getElementById('editDogOriginalName').value = '';
+    document.getElementById('deleteDogOriginalName').value = '';
     getData();
 }
 
@@ -59,6 +63,7 @@ function getData() {
                             '<div class="card-body">' +
                                 value.description +
                                 '<br>' +
+                                '<button type="button" id="btn' + value.name + '_' + value.description + '" class="btn btn-primary" onclick="confirmEdit(this.id);">Edit</button>' +
                                 '<button type="button" id="btn' + value.name + '" class="btn btn-primary" onclick="confirmDelete(this.id);">Delete</button>' +
                             '</div>' +
                         '</div>' +
@@ -72,14 +77,45 @@ function getData() {
         });
 }
 
+function confirmEdit(btn_id) {
+    var details = (btn_id.substr(3)).split('_');
+    document.getElementById('editDogBreedInput').value = details[0];
+    document.getElementById('editDogDescriptionInput').value = details[1];
+    document.getElementById('editDogOriginalName').value = details[0];
+    $('#editDogModal').modal('show');
+}
+
+function editDog() {
+    var originalName = document.getElementById('editDogOriginalName').value;
+    var name = document.getElementById('editDogBreedInput').value;
+    var description = document.getElementById('editDogDescriptionInput').value;
+    var uri = 'api/dogs/' + originalName;
+    var newDog = 'name=' + name + '&description=' + description;
+    $.ajax({
+        type: 'PUT',
+        url: uri,
+        contentType: 'application/x-www-form-urlencoded',
+        data: newDog,
+        success: function (result) {
+            $('#editDogModal').modal('hide');
+            alert("Dog edited successfully!");
+            clearData();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("Unable to edit dog, please check if another dog already exist with the same name!");
+        }
+    });
+
+}
+
 function confirmDelete(btn_id) {
-    document.getElementById('originalName').value = btn_id.substr(3);
+    document.getElementById('deleteDogOriginalName').value = btn_id.substr(3);
     $('#deleteDogModal').modal('show');
 }
 
 function deleteDog() {
-    var id = document.getElementById('originalName').value;
-    var uri = 'api/dogs/' + id;
+    var originalName = document.getElementById('deleteDogOriginalName').value;
+    var uri = 'api/dogs/' + originalName;
     $.ajax({
         type: 'DELETE',
         url: uri,
