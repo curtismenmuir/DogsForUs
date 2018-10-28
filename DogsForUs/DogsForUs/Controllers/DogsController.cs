@@ -67,9 +67,23 @@ namespace DogsForUs.Controllers
                         return Ok();
                     }
                 }
-                // Return bad request as cant update a record which doesn't exist
                 return BadRequest();
             }
+        }
+
+        // DELETE api/dogs/Dog Name
+        [HttpDelete("{name}")]
+        public ActionResult DeleteDog(string name)
+        {
+            lock (_dogCollection)
+            {
+                if (_dogCollection.ContainsKey(name))
+                {
+                    _dogCollection.Remove(name);
+                    return Ok();
+                }
+            }
+            return BadRequest();
         }
 
         public void Clear()
@@ -95,13 +109,5 @@ namespace DogsForUs.Controllers
                 _dogCollection[dog3.Name] = dog3;
             }
         }
-        /*
-       
-       // DELETE api/dogs/5
-       [HttpDelete("{id}")]
-       public void Delete(int id)
-       {
-       }
-       */
     }
 }
