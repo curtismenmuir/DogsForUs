@@ -12,15 +12,23 @@ function saveDog() {
         var uri = 'api/dogs/' + name + '/' + description;
         $.getJSON(uri)
             .done(function(data) {
-               
+                $('#addNewDogModal').modal('hide');
+                alert("Dog added successfully!");
+                clearData();
             })
             .fail(function(jqXHR, textStatus, err) {
-
+                alert("Unable to add dog, please check that it does not already exist!");
             });
     }
-    // else show input error
-    $('#addNewDogModal').modal('hide');
+    else {
+        alert("Please enter the breed of dog to be added!");
+    }
+}
+
+function clearData() {
     $('#accordion').empty();
+    document.getElementById('dogBreedInput').value = '';
+    document.getElementById('dogDescriptionInput').value = '';
     getData();
 }
 
