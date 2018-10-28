@@ -59,6 +59,7 @@ function getData() {
                             '<div class="card-body">' +
                                 value.description +
                                 '<br>' +
+                                '<button type="button" id="btn' + value.name + '" class="btn btn-primary" onclick="confirmDelete(this.id);">Delete</button>' +
                             '</div>' +
                         '</div>' +
                     '</div>'
@@ -69,4 +70,26 @@ function getData() {
         .fail(function (jqXHR, textStatus, err) {
 
         });
+}
+
+function confirmDelete(btn_id) {
+    document.getElementById('originalName').value = btn_id.substr(3);
+    $('#deleteDogModal').modal('show');
+}
+
+function deleteDog() {
+    var id = document.getElementById('originalName').value;
+    var uri = 'api/dogs/' + id;
+    $.ajax({
+        type: 'DELETE',
+        url: uri,
+        success: function (result) {
+            $('#deleteDogModal').modal('hide');
+            alert("Dog deleted successfully!");
+            clearData();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("Unable to delete dog!");
+        }
+    });
 }
