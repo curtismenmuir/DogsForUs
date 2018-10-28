@@ -30,20 +30,14 @@ namespace UnitTests
             _dogTestCollection = new Dictionary<int, Dog>();
             Dog testDog = new Dog(testName, testDescription);
             _dogTestCollection[testDog.GetHashCode()] = testDog;
-
             var dogController = new DogsController();
             dogController.Clear();
             var result = dogController.AddDog(testName, testDescription);
-            
-            var okObjectResult = result as OkObjectResult;
-            Dictionary<int, Dog> dogCollection = okObjectResult.Value as Dictionary<int, Dog>;
+            var result2 = dogController.AddDog(testName, testDescription);
 
             // Assert
-            Assert.AreEqual(1, dogCollection.Count);
-            foreach (var dog in dogCollection)
-            {
-                Assert.IsTrue(_dogTestCollection[dog.Value.GetHashCode()].Equals(dog.Value));
-            }
+            Assert.AreEqual(typeof(OkResult), result.GetType());
+            Assert.AreEqual(typeof(BadRequestResult), result2.GetType());
         }
 
         [TestMethod]

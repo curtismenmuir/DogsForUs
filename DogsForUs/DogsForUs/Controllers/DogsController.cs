@@ -47,9 +47,9 @@ namespace DogsForUs.Controllers
                     return BadRequest();
                 }
             }
-            return Ok(tempCollection);
+            return Ok();
         }
-        
+
         public void Clear()
         {
             if (_dogCollection != null && _dogCollection.Count != 0)

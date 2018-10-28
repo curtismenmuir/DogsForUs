@@ -23,7 +23,7 @@ namespace DogsForUs.Models
         /// <returns>True / False</returns>
         public bool Equals(Dog dog)
         {
-            return (this.Name.Equals(dog.Name) && this.Description.Equals(dog.Description));
+            return this.Name.Equals(dog.Name);
         }
 
         /// <summary>
@@ -33,11 +33,7 @@ namespace DogsForUs.Models
         /// <returns>hash as int</returns>
         public override int GetHashCode()
         {
-            int seed = -1521134295;
-            int hash = 352033288;
-            hash = hash * seed + this.Name.GetHashCode();
-            hash = hash * seed + this.Description.GetHashCode();
-            return hash;
+            return this.Name.GetHashCode();
         }
     }
 }
