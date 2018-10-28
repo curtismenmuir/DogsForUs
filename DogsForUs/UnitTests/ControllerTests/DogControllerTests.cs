@@ -9,15 +9,15 @@ namespace UnitTests
     [TestClass]
     public class DogControllerTests
     {
-        private static Dictionary<int, Dog> _dogTestCollection;
+        private static Dictionary<string, Dog> _dogTestCollection;
         public void PopulateTestCollection()
         {
             Dog dog1 = new Dog("bulldog", "Some description");
             Dog dog2 = new Dog("chihuahua", "Some description");
             Dog dog3 = new Dog("sheepdog", "Some description");
-            _dogTestCollection[dog1.GetHashCode()] = dog1;
-            _dogTestCollection[dog2.GetHashCode()] = dog2;
-            _dogTestCollection[dog3.GetHashCode()] = dog3;
+            _dogTestCollection[dog1.Name] = dog1;
+            _dogTestCollection[dog2.Name] = dog2;
+            _dogTestCollection[dog3.Name] = dog3;
         }
 
         [TestMethod]
@@ -39,19 +39,19 @@ namespace UnitTests
         public void DogControllerGetAllDogsTest()
         {
             // Arrange
-            _dogTestCollection = new Dictionary<int, Dog>();
+            _dogTestCollection = new Dictionary<string, Dog>();
             PopulateTestCollection();
             var dogController = new DogsController();
             dogController.Clear();
             var result = dogController.GetAllDogs();
             var okObjectResult = result as OkObjectResult;
-            Dictionary<int, Dog> dogCollection = okObjectResult.Value as Dictionary<int, Dog>;
+            Dictionary<string, Dog> dogCollection = okObjectResult.Value as Dictionary<string, Dog>;
 
             // Assert
             Assert.AreEqual(3, dogCollection.Count);
             foreach (var dog in dogCollection)
             {
-                Assert.IsTrue(_dogTestCollection[dog.Value.GetHashCode()].Equals(dog.Value));
+                Assert.IsTrue(_dogTestCollection[dog.Key].Equals(dog.Value));
             }
         }
     }

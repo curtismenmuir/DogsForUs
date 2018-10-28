@@ -10,13 +10,13 @@ namespace DogsForUs.Controllers
     [Route("api/[controller]")]
     public class DogsController : ControllerBase
     {
-        private static Dictionary<int, Dog> _dogCollection = new Dictionary<int, Dog>();
+        private static Dictionary<string, Dog> _dogCollection = new Dictionary<string, Dog>();
 
         // GET: api/dogs
         [HttpGet]
         public ActionResult GetAllDogs()
         {
-            Dictionary<int, Dog> tempCollection = new Dictionary<int, Dog>();
+            Dictionary<string, Dog> tempCollection = new Dictionary<string, Dog>();
             if (_dogCollection.Count == 0)
             {
                 PopulateCollection();
@@ -35,9 +35,9 @@ namespace DogsForUs.Controllers
         {
             lock (_dogCollection)
             {
-                if (!_dogCollection.ContainsKey(dog.GetHashCode()))
+                if (!_dogCollection.ContainsKey(dog.Name))
                 {
-                    _dogCollection[dog.GetHashCode()] = dog;
+                    _dogCollection[dog.Name] = dog;
                     return Ok();
                 }
                 else
@@ -65,9 +65,9 @@ namespace DogsForUs.Controllers
             Dog dog3 = new Dog("sheepdog", "Some description");
             lock (_dogCollection)
             {
-                _dogCollection[dog1.GetHashCode()] = dog1;
-                _dogCollection[dog2.GetHashCode()] = dog2;
-                _dogCollection[dog3.GetHashCode()] = dog3;
+                _dogCollection[dog1.Name] = dog1;
+                _dogCollection[dog2.Name] = dog2;
+                _dogCollection[dog3.Name] = dog3;
             }
         }
         /*
