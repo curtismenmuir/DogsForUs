@@ -9,13 +9,13 @@ namespace DogsForUs.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-
+        
         public Dog (string name, string description)
         {
             this.Name = name;
             this.Description = description;
         }
-
+        
         /// <summary>
         /// Compares this Dog object to another to establish whether the 2 are equal
         /// </summary>

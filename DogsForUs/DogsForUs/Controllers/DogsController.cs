@@ -22,13 +22,13 @@ namespace DogsForUs.Controllers
                 PopulateCollection();
 
             }
-            lock(_dogCollection)
+            lock (_dogCollection)
             {
                 tempCollection = _dogCollection;
             }
             return Ok(tempCollection);
         }
-       
+
         // GET api/dogs/Some Name/Some Description
         [HttpGet("{name}/{description}")]
         public ActionResult AddDog(string name, string description)
@@ -37,12 +37,19 @@ namespace DogsForUs.Controllers
             Dog dog = new Dog(name, description);
             lock (_dogCollection)
             {
-                _dogCollection[dog.GetHashCode()] = dog;
-                tempCollection = _dogCollection;
+                if (!_dogCollection.ContainsKey(dog.GetHashCode()))
+                {
+                    _dogCollection[dog.GetHashCode()] = dog;
+                    tempCollection = _dogCollection;
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
             return Ok(tempCollection);
         }
-
+        
         public void Clear()
         {
             if (_dogCollection != null && _dogCollection.Count != 0)
