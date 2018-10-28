@@ -34,6 +34,7 @@ namespace UnitTests
             var dogController = new DogsController();
             dogController.Clear();
             var result = dogController.AddDog(testName, testDescription);
+            
             var okObjectResult = result as OkObjectResult;
             Dictionary<int, Dog> dogCollection = okObjectResult.Value as Dictionary<int, Dog>;
 
