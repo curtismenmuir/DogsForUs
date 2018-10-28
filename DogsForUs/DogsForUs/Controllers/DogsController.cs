@@ -49,7 +49,7 @@ namespace DogsForUs.Controllers
 
         // PUT api/dogs/Original Dog Name
         [HttpPut("{originalName}")]
-        public ActionResult UpdateDog(string originalName, Dog newDog)
+        public ActionResult EditDog(string originalName, Dog newDog)
         {
             lock (_dogCollection)
             {
