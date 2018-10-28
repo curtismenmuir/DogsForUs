@@ -24,16 +24,11 @@ namespace UnitTests
         public void DogControllerAddDogTest()
         {
             // Arrange
-            string testName = "Test Name";
-            string testDescription = "Test Description";
-
-            _dogTestCollection = new Dictionary<int, Dog>();
-            Dog testDog = new Dog(testName, testDescription);
-            _dogTestCollection[testDog.GetHashCode()] = testDog;
             var dogController = new DogsController();
             dogController.Clear();
-            var result = dogController.AddDog(testName, testDescription);
-            var result2 = dogController.AddDog(testName, testDescription);
+            Dog testDog = new Dog("Test Name", "Test Description");
+            var result = dogController.AddDog(testDog);
+            var result2 = dogController.AddDog(testDog);
 
             // Assert
             Assert.AreEqual(typeof(OkResult), result.GetType());

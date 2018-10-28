@@ -28,28 +28,25 @@ namespace DogsForUs.Controllers
             }
             return Ok(tempCollection);
         }
-
-        // GET api/dogs/Some Name/Some Description
-        [HttpGet("{name}/{description}")]
-        public ActionResult AddDog(string name, string description)
+        
+        // POST: api/dogs
+        [HttpPost]
+        public ActionResult AddDog(Dog dog)
         {
-            Dictionary<int, Dog> tempCollection = new Dictionary<int, Dog>();
-            Dog dog = new Dog(name, description);
             lock (_dogCollection)
             {
                 if (!_dogCollection.ContainsKey(dog.GetHashCode()))
                 {
                     _dogCollection[dog.GetHashCode()] = dog;
-                    tempCollection = _dogCollection;
+                    return Ok();
                 }
                 else
                 {
                     return BadRequest();
                 }
             }
-            return Ok();
         }
-
+        
         public void Clear()
         {
             if (_dogCollection != null && _dogCollection.Count != 0)
