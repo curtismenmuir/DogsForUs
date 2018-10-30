@@ -99,14 +99,19 @@ namespace DogsForUs.Controllers
 
         private void PopulateCollection()
         {
-            Dog dog1 = new Dog("bulldog", "Some description");
-            Dog dog2 = new Dog("chihuahua", "Some description");
-            Dog dog3 = new Dog("sheepdog", "Some description");
+            string[] terrierList = new string[] { "American", "Australian", "Bedlington", "Border", "Dandie", "Fox", "Irish", "Kerryblue", "Lakeland", "Norfolk", "Norwich", "Patterdale", "Scottish", "Sealyham", "Silky", "Tibetan", "Toy", "Westhighland", "Wheaten", "Yorkshire" };
+            Dog dog1 = new Dog("bulldog", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            Dog dog2 = new Dog("chihuahua", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            Dog dog3 = new Dog("sheepdog", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            Dog dog4 = new Dog("terrier", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            dog4.SubBreeds = terrierList;
+
             lock (_dogCollection)
             {
                 _dogCollection[dog1.Name] = dog1;
                 _dogCollection[dog2.Name] = dog2;
                 _dogCollection[dog3.Name] = dog3;
+                _dogCollection[dog4.Name] = dog4;
             }
         }
     }

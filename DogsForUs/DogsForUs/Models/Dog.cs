@@ -9,7 +9,8 @@ namespace DogsForUs.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        
+        public string[] SubBreeds { get; set; }
+
         public Dog () { }
         
         public Dog (string name, string description)
@@ -17,9 +18,9 @@ namespace DogsForUs.Models
             this.Name = name;
             this.Description = description;
         }
-        
+
         /// <summary>
-        /// Compares this Dog object to another to establish whether the 2 are equal
+        /// Compares this Dog object to another to establish if they are the same
         /// </summary>
         /// <param name="dog"></param>
         /// <returns>True / False</returns>
