@@ -15,10 +15,15 @@ namespace UnitTests
             Dog dog1 = new Dog("bulldog", "Some description");
             Dog dog2 = new Dog("chihuahua", "Some description");
             Dog dog3 = new Dog("sheepdog", "Some description");
+            Dog dog4 = new Dog("terrier", "Some description");
+
+            string[] terrierList = new string[] { "American", "Australian", "Bedlington", "Border", "Dandie", "Fox", "Irish", "Kerryblue", "Lakeland", "Norfolk", "Norwich", "Patterdale", "Scottish", "Sealyham", "Silky", "Tibetan", "Toy", "Westhighland", "Wheaten", "Yorkshire" };
+            dog4.SubBreeds = terrierList;
 
             _dogTestCollection[dog1.Name] = dog1;
             _dogTestCollection[dog2.Name] = dog2;
             _dogTestCollection[dog3.Name] = dog3;
+            _dogTestCollection[dog4.Name] = dog4;
         }
 
         [TestMethod]
@@ -61,7 +66,7 @@ namespace UnitTests
 
             // Assert
             Assert.AreEqual(typeof(OkObjectResult), result.GetType());
-            Assert.AreEqual(3, dogCollection.Count);
+            Assert.AreEqual(4, dogCollection.Count);
             foreach (var dog in dogCollection)
             {
                 Assert.IsTrue(_dogTestCollection[dog.Key].Equals(dog.Value));
