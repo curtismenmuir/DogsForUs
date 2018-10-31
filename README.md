@@ -25,7 +25,7 @@ Web Service:
 1. GetAllDogs() - API Controller which returns the collection of dogs
 - Usage: HTTP GET ../api/dogs
 - EG GET http://dogsforus20181028114855.azurewebsites.net/api/dogs
-- Returns: ActionResult - Ok(_dogColletion) or BadRequest()
+- Returns: ActionResult - Ok(_dogColletion as temporary collection) or BadRequest()
 
 2. AddDog() - API Controller which adds a new dog to the collection
 - Usage: HTTP POST ../api/dogs - new dog details added in x-www-form-urlencoded 
