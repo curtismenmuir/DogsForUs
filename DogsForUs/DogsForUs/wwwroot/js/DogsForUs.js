@@ -2,14 +2,14 @@
     getData();
 });
 
+// function to call HTTP POST to Web Service with new dog information
 function addDog() {
     var name = document.getElementById('dogBreedInput').value;
     var description = document.getElementById('dogDescriptionInput').value;
     var subBreeds = document.getElementById('addDogSubBreedDisplay').value;
-
     if (name) {
         if (!description) {
-            description = 'No Description'; // description can be blank
+            description = 'No Description.'; // description can be blank - replace with "No Description."
         }
         var uri = 'api/dogs/';
         var newDog = 'name=' + name + '&description=' + description;
@@ -41,7 +41,7 @@ function addDog() {
     }
 }
 
-
+// function to show and populate edit dog modal popup with dog details
 function confirmEdit(btn_id) {
     var details = (btn_id.substr(3)).split('_');
     document.getElementById('editDogBreedInput').value = details[0];
@@ -54,18 +54,16 @@ function confirmEdit(btn_id) {
     $('#editDogModal').modal('show');
 }
 
+// function to call HTTP PUT to Web Service with edited dogs details
 function editDog() {
     var originalName = document.getElementById('editDogOriginalName').value;
     var name = document.getElementById('editDogBreedInput').value;
     var description = document.getElementById('editDogDescriptionInput').value;
-
     if (!description) {
         description = 'No Description'; // description can be blank
     }
-
     var uri = 'api/dogs/' + originalName;
     var newDog = 'name=' + name + '&description=' + description;
-
     var subBreeds = document.getElementById('editDogSubBreedDisplay').value;
     if (subBreeds) {
         var temp = subBreeds.replace(/\s+/g, ''); // remoove any spaces
@@ -75,7 +73,6 @@ function editDog() {
         }
         newDog.slice(0, -1);
     }   
-    
     $.ajax({
         type: 'PUT',
         url: uri,
@@ -90,14 +87,15 @@ function editDog() {
             alert("Unable to edit dog, please check if another dog already exist with the same name!");
         }
     });
-
 }
 
+// Function to display the delete dog modal popup
 function confirmDelete(btn_id) {
     document.getElementById('deleteDogOriginalName').value = btn_id.substr(3);
     $('#deleteDogModal').modal('show');
 }
 
+// Function to call HTTP DELETE to Web Service with dog name to be removed
 function deleteDog() {
     var originalName = document.getElementById('deleteDogOriginalName').value;
     var uri = 'api/dogs/' + originalName;
@@ -115,6 +113,7 @@ function deleteDog() {
     });
 }
 
+// Function to clear accordion and input fields - calls getData() to refresh dog list
 function clearData() {
     $('#accordion').empty();
     document.getElementById('dogBreedInput').value = '';
@@ -130,6 +129,7 @@ function clearData() {
     getData();
 }
 
+// Function calls HTTP GET to web service to get the dog collection - will append dogs to the accordion
 function getData() {
     var uri = 'api/dogs/'
     var count = 1;
@@ -137,7 +137,7 @@ function getData() {
         .done(function(data) {
             $('#accordion').empty();
             $.each(data, function (key, value) {
-                if (value.subBreeds != null) {
+                if (value.subBreeds !== null) {
                     $('#accordion').append(
                         '<div class="card">' +
                         '<div class="card-header" id="' + value.name + '">' +
@@ -153,17 +153,21 @@ function getData() {
                         '<h5>Description</h5>' +
                         value.description +
                         '<br>' +
-                        '<h5>Sub-Breeds</h5>' +
+                        '<h5 style="margin-top: 1%;">Sub-Breeds</h5>' +
                         '<p id="subBreed' + value.name + '"></p>' +
-                        '<button type="button" id="btn' + value.name + '_' + value.description + '_' + value.subBreeds +'" class="btn btn-primary" onclick="confirmEdit(this.id);">Edit</button>' +
+                        '<button type="button" id="btn' + value.name + '_' + value.description + '_' + value.subBreeds +'" class="btn btn-primary" onclick="confirmEdit(this.id);" style="margin-right: 0.1%;">Edit</button>' +
                         '<button type="button" id="btn' + value.name + '" class="btn btn-primary" onclick="confirmDelete(this.id);">Delete</button>' +
                         '</div>' +
                         '</div>' +
                         '</div>'
                     );
-                    
                     for (var i = 0; i < value.subBreeds.length; i++) {
-                        $('#subBreed' + value.name).append(value.subBreeds[i] + ' ' );
+                        if (i === 0) {
+                            $('#subBreed' + value.name).append(value.subBreeds[i]);
+                        }
+                        else {
+                            $('#subBreed' + value.name).append(', ' + value.subBreeds[i]);
+                        }
                     }
                 }
                 else {
@@ -182,7 +186,7 @@ function getData() {
                         '<h5>Description</h5>' +
                         value.description +
                         '<br>' +
-                        '<button type="button" id="btn' + value.name + '_' + value.description + '" class="btn btn-primary" onclick="confirmEdit(this.id);">Edit</button>' +
+                        '<button type="button" id="btn' + value.name + '_' + value.description + '" class="btn btn-primary" onclick="confirmEdit(this.id);" style="margin-right: 0.1%;">Edit</button>' +
                         '<button type="button" id="btn' + value.name + '" class="btn btn-primary" onclick="confirmDelete(this.id);">Delete</button>' +
                         '</div>' +
                         '</div>' +
@@ -197,10 +201,11 @@ function getData() {
         });
 }
 
+// Function to allow user to enter a sub breed to a dog in the add dog modal popup
 function addSubBreed() {
     var inputbox = document.getElementById('addDogSubBreedInput');
-    if (inputbox.value != '') {
-        if ((document.getElementById('addDogSubBreedDisplay').value) != '') {
+    if (inputbox.value !== '') {
+        if ((document.getElementById('addDogSubBreedDisplay').value) !== '') {
             document.getElementById('addDogSubBreedDisplay').value += ', ' + inputbox.value;
         }
         else {
@@ -213,14 +218,16 @@ function addSubBreed() {
     }
 }
 
+// Function to allow user to clear sub breeds assocaited with a dog in the add dog modal popup
 function clearSubBreed() {
     document.getElementById('addDogSubBreedDisplay').value = '';
 }
 
+// Function to allow user to enter a sub breed to a dog in the edit dog modal popup
 function addEditSubBreed() {
     var inputbox = document.getElementById('editDogSubBreedInput');
-    if (inputbox.value != '') {
-        if ((document.getElementById('editDogSubBreedDisplay').value) != '') {
+    if (inputbox.value !== '') {
+        if ((document.getElementById('editDogSubBreedDisplay').value) !== '') {
             document.getElementById('editDogSubBreedDisplay').value += ', ' + inputbox.value;
         }
         else {
@@ -233,6 +240,7 @@ function addEditSubBreed() {
     }
 }
 
+// Function to allow user to clear sub breeds assocaited with a dog in the edit dog modal popup
 function clearEditSubBreed() {
     document.getElementById('editDogSubBreedDisplay').value = '';
 }
