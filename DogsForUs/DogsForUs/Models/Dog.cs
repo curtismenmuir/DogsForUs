@@ -11,8 +11,16 @@ namespace DogsForUs.Models
         public string Description { get; set; }
         public string[] SubBreeds { get; set; }
 
+        /// <summary>
+        /// Constructor for empty dog object
+        /// </summary>
         public Dog () { }
-        
+
+        /// <summary>
+        /// Constructor to create dog object with name and description
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
         public Dog (string name, string description)
         {
             this.Name = name;
