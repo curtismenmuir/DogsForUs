@@ -12,7 +12,6 @@ anything is fine, as long as it is served over HTTP in a browser.
 - The interface must allow a user to create, read, update, and delete dogs.
 - Interactions with the list must persist, i.e. if I delete the Pug breed, close my browser,
 then reopen my browser, and view the list, the Pug breed must not be present.
-- 
 
 # Description
 Web Page:
@@ -41,3 +40,6 @@ Web Service:
 - Usage: HTTP DELETE ../api/dogs/DogName EG
 - EG GET http://dogsforus20181028114855.azurewebsites.net/api/dogs/Terrier
 - Returns: ActionResult - Ok() or BadRequest()
+
+# Summary
+This project was completed over a short period (3/4 days), so by nature there are still further improvements that could be made. The next feature that would have been implemented would have been to hook the system up to an SQL database so that the data can persist over a server reboot. The Dog class is easily extendible to allow further properties to be included to allow more information to be captured about the dogs in the colletion. EG Adding images to the collection for each dog type. 
