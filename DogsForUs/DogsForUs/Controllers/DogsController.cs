@@ -16,7 +16,7 @@ namespace DogsForUs.Controllers
         /// API Controller which returns the collection of dogs
         /// Usage: HTTP GET ../api/dogs
         /// </summary>
-        /// <returns>OK(_dogCollection)</returns>
+        /// <returns>OK(_dogCollection as temporary collection)</returns>
         [HttpGet]
         public ActionResult GetAllDogs()
         {
